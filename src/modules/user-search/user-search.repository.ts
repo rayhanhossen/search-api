@@ -4,7 +4,7 @@ import { UserSearch } from "./entities/user-search.entity";
 import { CreateUserSearchDto } from "./dto/create-user-search.dto";
 
 @Injectable()
-export class PostRepository extends Repository<UserSearch> {
+export class UserSearchRepository extends Repository<UserSearch> {
     constructor(private readonly dataSource: DataSource) {
         super(UserSearch, dataSource.createEntityManager());
     }
