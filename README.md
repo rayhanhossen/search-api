@@ -1,7 +1,7 @@
 
 ## Description
 
-ShareTrip NodeJs assessment test build using NestJs and Typescript with MySQL DB.
+ShareTrip NodeJs assessment test build using NestJs framework and Typescript programming language with MySQL DB.
 
 ## Project Structure
 ```
