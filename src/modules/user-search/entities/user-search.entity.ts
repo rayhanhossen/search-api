@@ -1,5 +1,5 @@
 import { Post } from "src/modules/post/entities/post.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('user_search')
 export class UserSearch {
@@ -8,6 +8,9 @@ export class UserSearch {
 
     @Column()
     keyword: string;
+
+    @CreateDateColumn({ name: "createdAt", type: "datetime", default: () => "CURRENT_TIMESTAMP(6)" })
+    createdAt: Date;
 
     @OneToMany((type) => Post, (post) => post.userSearch)
     posts: Post[];
