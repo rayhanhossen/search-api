@@ -5,6 +5,7 @@ ShareTrip NodeJs assessment test build using NestJs and Typescript with MySQL DB
 
 ## Project Structure
 ```
+.
 ├── src
 │   ├── app.controller.spec.ts
 │   ├── app.controller.ts
@@ -50,6 +51,13 @@ $ npm install
 ## Database Connection
 
 To connect the database, please copy the **.env.example** file content, create a **.env** file, paste the copied content, and change the credentials based on your local DB settings. 
+```
+HOST=localhost
+PORT=3306
+USERNAME=root
+PASSWORD=12345678
+DATABASE=search_api
+```
 
 ## Running the app
 
