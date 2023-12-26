@@ -1,4 +1,5 @@
 import { IsNotEmpty } from "class-validator";
+import { UserSearch } from "src/modules/user-search/entities/user-search.entity";
 
 export class CreatePostDto {
     @IsNotEmpty()
@@ -12,4 +13,7 @@ export class CreatePostDto {
 
     @IsNotEmpty()
     body: string;
+
+    @IsNotEmpty()
+    userSearch: UserSearch;
 }

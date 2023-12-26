@@ -18,9 +18,9 @@ export class Post {
     @Column({ type: 'longtext' })
     body: string;
 
-    @CreateDateColumn({ name: "createdAt", type: "datetime", default: () => "CURRENT_TIMESTAMP(6)" })
-    createdAt: Date;
-
     @ManyToOne((type) => UserSearch, (userSearch) => userSearch.posts)
     userSearch: UserSearch;
+
+    @CreateDateColumn({ name: "createdAt", type: "datetime", default: () => "CURRENT_TIMESTAMP(6)" })
+    createdAt: Date;
 }
