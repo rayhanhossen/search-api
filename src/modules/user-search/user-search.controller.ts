@@ -1,7 +1,5 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { UserSearchService } from './user-search.service';
-import { CreateUserSearchDto } from './dto/create-user-search.dto';
-import { UpdateUserSearchDto } from './dto/update-user-search.dto';
 
 @Controller({ path: 'user-search' })
 export class UserSearchController {
