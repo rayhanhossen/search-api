@@ -25,12 +25,12 @@ export class PostService {
             // check filterPosts empty or not 
             if (filteredPosts.length !== 0) {
                 // check userSearch is already exits or not 
-                const exist = await this.userSearchRepo.exitsCheck(keyword);
+                const existingUserSearch = await this.userSearchRepo.exitsCheck(keyword);
                 let userSearch: any;
-                if (!exist) {
+                if (!existingUserSearch) {
                     //  Create entity of userSearch and save keyword in database
                     userSearch = await this.userSearchRepo.createEntity({ keyword } as CreateUserSearchDto);
-                } else userSearch = exist;
+                } else userSearch = existingUserSearch;
 
                 // Create post entity based on filterPosts and save in DB 
                 const savedPost = await this.postRepo.createEntity(filteredPosts, userSearch);
