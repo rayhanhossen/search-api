@@ -5,17 +5,27 @@ import { CreateUserSearchDto } from "./dto/create-user-search.dto";
 
 @Injectable()
 export class UserSearchRepository extends Repository<UserSearch> {
-    constructor(private readonly dataSource: DataSource) {
-        super(UserSearch, dataSource.createEntityManager());
-    }
+  constructor(private readonly dataSource: DataSource) {
+    super(UserSearch, dataSource.createEntityManager());
+  }
 
-    async createEntity(dto: CreateUserSearchDto): Promise<UserSearch | Error> {
-        try {
-            const entity = this.create(dto);
-            await this.save(entity);
-            return entity;
-        } catch (error) {
-            console.error(error);
-        }
+  async createEntity(dto: CreateUserSearchDto): Promise<UserSearch | Error> {
+    try {
+      const entity = this.create(dto);
+      await this.save(entity);
+      return entity;
+    } catch (error) {
+      console.error(error);
     }
+  }
+
+  async exitsCheck(keyword: string): Promise<UserSearch | Error> {
+    try {
+      return this.findOne({
+        where: { keyword },
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
