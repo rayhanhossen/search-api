@@ -1,6 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { Post } from "./entities/post.entity";
 import { DataSource, Repository } from "typeorm";
+import { UserSearch } from "../user-search/entities/user-search.entity";
+
+interface PostEntity extends Post {
+    userSearch: UserSearch
+}
 
 @Injectable()
 export class PostRepository extends Repository<Post> {
@@ -8,12 +13,12 @@ export class PostRepository extends Repository<Post> {
         super(Post, dataSource.createEntityManager());
     }
 
-    async createEntity(filteredPosts: any, userSearch: any): Promise<Post[] | Error> {
+    async createEntity(filteredPosts: Post[], userSearch: UserSearch): Promise<Post[]> {
         try {
-            const entity = filteredPosts.map((item: any) => {
+            const entity = filteredPosts.map((item: PostEntity) => {
                 const dto = {
                     userId: item.userId,
-                    externalId: item.id,
+                    externalId: Number(item.id),
                     title: item.title,
                     body: item.body,
                     userSearch: userSearch

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { PostRepository } from './post.repository';
 import { UserSearchRepository } from '../user-search/user-search.repository';
 import { CreateUserSearchDto } from '../user-search/dto/create-user-search.dto';
+import { UserSearch } from '../user-search/entities/user-search.entity';
 
 @Injectable()
 export class PostService {
@@ -26,7 +27,7 @@ export class PostService {
             if (filteredPosts.length !== 0) {
                 // check userSearch is already exits or not 
                 const existingUserSearch = await this.userSearchRepo.exitsCheck(keyword);
-                let userSearch: any;
+                let userSearch: UserSearch;
                 if (!existingUserSearch) {
                     //  Create entity of userSearch and save keyword in database
                     userSearch = await this.userSearchRepo.createEntity({ keyword } as CreateUserSearchDto);
@@ -36,7 +37,7 @@ export class PostService {
                 const savedPost = await this.postRepo.createEntity(filteredPosts, userSearch);
 
                 // Save asssosiated post with the user search 
-                userSearch.posts = savedPost;
+                if (Array.isArray(savedPost)) userSearch.posts = savedPost;
                 await this.userSearchRepo.save(userSearch);
                 return savedPost;
             } else {

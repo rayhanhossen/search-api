@@ -9,7 +9,7 @@ export class UserSearchRepository extends Repository<UserSearch> {
         super(UserSearch, dataSource.createEntityManager());
     }
 
-    async createEntity(dto: CreateUserSearchDto): Promise<UserSearch | Error> {
+    async createEntity(dto: CreateUserSearchDto): Promise<UserSearch> {
         try {
             const entity = this.create(dto);
             await this.save(entity);
@@ -19,7 +19,7 @@ export class UserSearchRepository extends Repository<UserSearch> {
         }
     }
 
-    async exitsCheck(keyword: string): Promise<UserSearch | Error> {
+    async exitsCheck(keyword: string): Promise<UserSearch> {
         try {
             return this.findOne({
                 where: { keyword },
