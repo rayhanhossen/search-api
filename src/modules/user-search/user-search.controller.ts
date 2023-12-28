@@ -5,30 +5,30 @@ import { UpdateUserSearchDto } from './dto/update-user-search.dto';
 
 @Controller('user-search')
 export class UserSearchController {
-  constructor(private readonly userSearchService: UserSearchService) {}
+    constructor(private readonly userSearchService: UserSearchService) { }
 
-  @Post()
-  create(@Body() createUserSearchDto: CreateUserSearchDto) {
-    return this.userSearchService.create(createUserSearchDto);
-  }
+    @Post()
+    create(@Body() createUserSearchDto: CreateUserSearchDto) {
+        return this.userSearchService.create(createUserSearchDto);
+    }
 
-  @Get()
-  findAll() {
-    return this.userSearchService.findAll();
-  }
+    @Get()
+    findAll() {
+        return this.userSearchService.findAll();
+    }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userSearchService.findOne(+id);
-  }
+    @Get(':id')
+    findOne(@Param('id') id: string) {
+        return this.userSearchService.findOne(+id);
+    }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserSearchDto: UpdateUserSearchDto) {
-    return this.userSearchService.update(+id, updateUserSearchDto);
-  }
+    @Patch(':id')
+    update(@Param('id') id: string, @Body() updateUserSearchDto: UpdateUserSearchDto) {
+        return this.userSearchService.update(+id, updateUserSearchDto);
+    }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userSearchService.remove(+id);
-  }
+    @Delete(':id')
+    remove(@Param('id') id: string) {
+        return this.userSearchService.remove(+id);
+    }
 }

@@ -7,16 +7,16 @@ import { PostRepository } from './post.repository';
 import { UserSearchRepository } from '../user-search/user-search.repository';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      Post,
-    ])
-  ],
-  controllers: [PostController],
-  providers: [
-    PostService,
-    PostRepository,
-    UserSearchRepository
-  ],
+    imports: [
+        TypeOrmModule.forFeature([
+            Post,
+        ])
+    ],
+    controllers: [PostController],
+    providers: [
+        PostService,
+        PostRepository,
+        UserSearchRepository
+    ],
 })
 export class PostModule { }

@@ -5,12 +5,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserSearch } from './entities/user-search.entity';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      UserSearch
-    ])
-  ],
-  controllers: [UserSearchController],
-  providers: [UserSearchService],
+    imports: [
+        TypeOrmModule.forFeature([
+            UserSearch
+        ])
+    ],
+    controllers: [UserSearchController],
+    providers: [UserSearchService],
 })
-export class UserSearchModule {}
+export class UserSearchModule { }
