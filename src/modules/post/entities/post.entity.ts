@@ -1,7 +1,7 @@
 import { UserSearch } from "src/modules/user-search/entities/user-search.entity";
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('post')
+@Entity({ name: 'post' })
 export class Post {
     @PrimaryGeneratedColumn('uuid')
     id: string;
