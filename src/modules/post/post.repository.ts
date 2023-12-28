@@ -8,9 +8,8 @@ export class PostRepository extends Repository<Post> {
         super(Post, dataSource.createEntityManager());
     }
 
-    async createEntity(filteredPosts: any, userSearch: any): Promise<any | Error> {
+    async createEntity(filteredPosts: any, userSearch: any): Promise<Post[] | Error> {
         try {
-            // Map each post into our entity model and save it to the DB
             const entity = filteredPosts.map((item: any) => {
                 const dto = {
                     userId: item.userId,
