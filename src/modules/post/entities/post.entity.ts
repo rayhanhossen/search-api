@@ -21,6 +21,6 @@ export class Post {
     @ManyToOne((type) => UserSearch, (userSearch) => userSearch.posts)
     userSearch: UserSearch;
 
-    @CreateDateColumn({ name: "createdAt", type: "datetime", default: () => "CURRENT_TIMESTAMP(6)" })
-    createdAt: Date;
+    @CreateDateColumn({ name: "timeStamp", type: "datetime", default: () => "CURRENT_TIMESTAMP(6)" })
+    timeStamp: Date;
 }
