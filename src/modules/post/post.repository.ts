@@ -13,7 +13,7 @@ export class PostRepository extends Repository<Post> {
         super(Post, dataSource.createEntityManager());
     }
 
-    async createEntity(filteredPosts: Post[], userSearch: UserSearch): Promise<Post[]> {
+    async createEntity(filteredPosts: Post[], userSearch: UserSearch, userIp: string): Promise<Post[]> {
         try {
             const entity = filteredPosts.map((item: PostEntity) => {
                 const dto = {
@@ -21,6 +21,7 @@ export class PostRepository extends Repository<Post> {
                     externalId: Number(item.id),
                     title: item.title,
                     body: item.body,
+                    userIp: userIp,
                     userSearch: userSearch
                 };
                 return this.create(dto);

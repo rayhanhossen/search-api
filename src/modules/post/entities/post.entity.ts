@@ -18,6 +18,9 @@ export class Post {
     @Column({ type: 'longtext' })
     body: string;
 
+    @Column()
+    userIp: string;
+
     @ManyToOne((type) => UserSearch, (userSearch) => userSearch.posts)
     userSearch: UserSearch;
 

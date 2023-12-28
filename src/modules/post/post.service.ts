@@ -13,7 +13,7 @@ export class PostService {
         private readonly postRepo: PostRepository,
         private readonly userSearchRepo: UserSearchRepository
     ) { }
-    async searchPost(keyword: string): Promise<Post[] | Error> {
+    async searchPost(keyword: string, userIp: string): Promise<Post[] | Error> {
         try {
             // Fetch external API data
             const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
@@ -35,7 +35,7 @@ export class PostService {
                 } else userSearch = existingUserSearch;
 
                 // Create post entity based on filterPosts and save in DB 
-                const savedPost = await this.postRepo.createEntity(filteredPosts, userSearch);
+                const savedPost = await this.postRepo.createEntity(filteredPosts, userSearch, userIp);
 
                 return savedPost;
             } else {
