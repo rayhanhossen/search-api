@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Post } from "./entities/post.entity";
-import { DataSource, Repository } from "typeorm";
+import { DataSource, Repository, Transaction } from "typeorm";
 import { UserSearch } from "../user-search/entities/user-search.entity";
 
 interface PostEntity extends Post {
@@ -25,10 +25,18 @@ export class PostRepository extends Repository<Post> {
                 };
                 return this.create(dto);
             });
-            await this.save(entity);
+            await this.dataSource.transaction(async (transactionEntityManager) => {
+                try {
+                    await transactionEntityManager.save(entity); 
+                } catch (error) {
+                    console.error("Error saving post entities within transaction:", error);
+                    throw error;
+                }
+            });
             return entity;
         } catch (error) {
             console.log(error);
+            throw new Error('Failed to create post entities');
         }
     }
 }

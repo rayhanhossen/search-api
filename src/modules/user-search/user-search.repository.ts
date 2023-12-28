@@ -12,10 +12,18 @@ export class UserSearchRepository extends Repository<UserSearch> {
     async createEntity(dto: CreateUserSearchDto): Promise<UserSearch> {
         try {
             const entity = this.create(dto);
-            await this.save(entity);
+            await this.dataSource.transaction(async (transactionEntityManager) => {
+                try {
+                    await transactionEntityManager.save(entity); 
+                } catch (error) {
+                    console.error("Error saving user-search entities within transaction:", error);
+                    throw error;
+                }
+            });
             return entity;
         } catch (error) {
             console.error(error);
+            throw new Error('Failed to create user-search entities');
         }
     }
 
@@ -26,6 +34,7 @@ export class UserSearchRepository extends Repository<UserSearch> {
             })
         } catch (error) {
             console.log(error);
+            throw new Error('Failed to fetch user-search entities');
         }
     }
 }

@@ -5,6 +5,7 @@ import { PostRepository } from './post.repository';
 import { UserSearchRepository } from '../user-search/user-search.repository';
 import { CreateUserSearchDto } from '../user-search/dto/create-user-search.dto';
 import { UserSearch } from '../user-search/entities/user-search.entity';
+import { error } from 'console';
 
 @Injectable()
 export class PostService {
@@ -42,6 +43,7 @@ export class PostService {
             }
         } catch (e) {
             console.error(e);
+            throw error;
         }
     }
 }
