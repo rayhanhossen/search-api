@@ -36,9 +36,6 @@ export class PostService {
                 // Create post entity based on filterPosts and save in DB 
                 const savedPost = await this.postRepo.createEntity(filteredPosts, userSearch);
 
-                // Save asssosiated post with the user search 
-                if (Array.isArray(savedPost)) userSearch.posts = savedPost;
-                await this.userSearchRepo.save(userSearch);
                 return savedPost;
             } else {
                 return filteredPosts;
